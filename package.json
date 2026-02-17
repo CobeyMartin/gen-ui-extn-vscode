@@ -1,0 +1,103 @@
+{
+    "name": "gen-ui-extension",
+    "displayName": "Gen UI Extension (gen-ui-extn-vscode)",
+    "description": "Generate stunning UI components using AI-powered Design Thinking principles",
+    "icon": "icon.png",
+    "version": "0.0.1",
+    "publisher": "genui",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CobeyMartin/gen-ui-extn-vscode.git"
+    },
+    "engines": {
+        "vscode": "^1.103.0"
+    },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "categories": [
+        "Other",
+        "Visualization"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "genUI.generateUI",
+                "title": "Generate UI",
+                "category": "Gen UI"
+            },
+            {
+                "command": "genUI.selectModel",
+                "title": "Select Language Model",
+                "category": "Gen UI"
+            },
+            {
+                "command": "genUI.saveToFile",
+                "title": "Save Generation to File",
+                "category": "Gen UI"
+            },
+            {
+                "command": "genUI.loadDesign",
+                "title": "Load Saved Design",
+                "category": "Gen UI"
+            }
+        ],
+        "configuration":{
+            "title": "Gen UI Configuration",
+            "properties": {
+                "genUI.aestheticPresets":{
+                    "type":"array",
+                    "default":[
+                        "Brutally Minimal",
+                        "Maximalist Chaos",
+                        "Retro-Futuristic",
+                        "Organic/Natural",
+                        "Luxury/Refined",
+                        "Playful/Toy-like",
+                        "Editorial/Magazine",
+                        "Brutalist/Raw",
+                        "Art Deco/Geometric",
+                        "Soft/Pastel",
+                        "Industrial/Utilitarian",
+                        "Cyberpunk/Neon",
+                        "Scandinavian Clean",
+                        "Memphis Design",
+                        "Glassmorphism"
+                    ],
+                    "description": "Aesthetic direction presets available when generating UI. Add your own custom aesthetics."
+                },
+                "genUI.defaultModelFamily":{
+                    "type":"string",
+                    "default":"gpt-4o",
+                    "description": "Default language model family to prioritize during model selection."
+                }
+            }
+        }
+    },
+    "scripts":{
+        "vscode:prepublish": "npm run package",
+        "compile":"webpack",
+        "watch":"webpack --watch",
+        "package":"webpack --mode production --devtool hidden-source-map",
+        "compile-tests":"tsc -p . --outDir out",
+        "watch-tests":"tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "lint":"eslint src",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode":"^1.103.0",
+        "@types/mocha":"^10.0.10",
+        "@types/node":"22.x",
+        "typescript-eslint": "^8.54.0",
+        "eslint":"^9.39.2",
+        "typescript":"^5.9.3",
+        "ts-loader":"^9.5.4",
+        "webpack":"^5.104.1",
+        "webpack-cli":"^6.0.1",
+        "@vscode/test-cli": "^0.0.12",
+        "@vscode/test-electron": "^2.5.2"
+    }
+}
